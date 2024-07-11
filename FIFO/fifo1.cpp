@@ -45,6 +45,5 @@ int main() {
     // close fifo
     close(fileDescriptor);
     
-
     return 0;
 }
