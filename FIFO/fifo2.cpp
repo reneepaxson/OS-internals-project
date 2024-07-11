@@ -41,10 +41,8 @@ int main() {
         std::cout << buff[0] << std::endl;
     }
     
-    
     // close fifo
     close(fileDescriptor);
     
-
     return 0;
 }
