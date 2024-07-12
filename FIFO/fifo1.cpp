@@ -7,6 +7,7 @@
 #include <errno.h>
 #include <cstdlib>
 #include <time.h>
+#include <iostream>
 
 int main() {
     // reset the default umask bits so that 
@@ -37,6 +38,7 @@ int main() {
     for (int i = 0; i < 100; i++){
         // fill buffer with random numbers
         buff[i] = rand();
+        std::cout << buff[i] << std::endl;
     }
 
     // write buff to the fifo 
