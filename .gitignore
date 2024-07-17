@@ -1,4 +1,6 @@
 *.vscode
 *.git
 *.idea
+*.iml
 .DS_Store
+*.class

@@ -4,37 +4,6 @@
 
 #define MAXDATA 3
 
-typedef struct  {
-    unsigned int
-    msg_type_name : MSG_TYPE_BYTE, /* Type of data */
-    msg_type_size : 8,             /* Number of bits per item */
-msg_type_number : 12,          /* Number of items */
-msg_type_inline : 1,           /* If true, data follows; else
-a ptr to data follows */
-msg_type_longform : 1,         /* Name, size, number follow */
-msg_type_deallocate : 1,       /* Deallocate port rights or
-memory */
-msg_type_unused : 1;
-} msg_type_t;
-
-typedef struct {
-msg_header_t Head;
-msg_type_t   aType;
-int          a;
-msg_type_t   bType;
-int          b;
-} Request;
-
-typedef struct {
-unsigned int msg_unused : 24,
-msg_simple : 8;
-unsigned int msg_size;
-int          msg_type;
-port_t       msg_local_port;
-port_t       msg_remote_port;
-int          msg_id;
-} msg_header_t;
-
 struct simp_msg_struct {
 msg_header_t  h;               /* message header */
 msg_type_t    t;               /* type descriptor */
