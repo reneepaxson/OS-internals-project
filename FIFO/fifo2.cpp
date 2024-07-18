@@ -4,11 +4,16 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include <errno.h>
 #include <cstdlib>
-#include <iostream>
+//#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 int main() {
+    // if the input file already exists, delete it
+    std::remove("./fifo-output.txt");
+
     // reset the default umask bits so that 
     // it doesn't mess with the permissions on the fifo
     umask(0000);
@@ -32,17 +37,25 @@ int main() {
     // buffer to hold the data sent through the pipe
     // size 1 since we read one entry at a time
     int buff[1]; 
+
+    string filepath = "./fifo-output.txt";
+    ofstream file;
+    file.open(filepath);
     
     // `read` will return -1 if there's an error  
     // and 0 if the buffer is empty
     // and holds indefinitely if the buffer hasn't been written to yet
     while (read(fileDescriptor, buff, sizeof(buff)) > 0) {
-        // print each buffer entry to the terminal
-        std::cout << buff[0] << std::endl;
+        if (file.is_open()){
+            file << buff[0] << std::endl;
+        }
     }
     
     // close fifo
     close(fileDescriptor);
+
+    // close file
+    file.close();
     
     return 0;
 }

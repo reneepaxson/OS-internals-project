@@ -1,15 +1,20 @@
 #include <stdio.h>
-#include <string.h>
+#include <string>
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include <errno.h>
 #include <cstdlib>
 #include <time.h>
-#include <iostream>
+//#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 int main() {
+    // if the input file already exists, delete it
+    std::remove("./fifo-input.txt");
+
     // reset the default umask bits so that 
     // it doesn't mess with the permissions on the fifo
     umask(0000);
@@ -23,7 +28,7 @@ int main() {
     // and how we wish to name it
     char * myfifo = "./myfifo"; 
 
-    // make fifo with RW permissions for all
+    // make fifo with RW permissions for all user, group, and others
     mkfifo(myfifo, 0666);
 
     // open fifo for write only 
@@ -35,17 +40,26 @@ int main() {
     // seed rand to make it rand
     srand(time(NULL));
 
-    for (int i = 0; i < 100; i++){
-        // fill buffer with random numbers
-        buff[i] = rand();
-        std::cout << buff[i] << std::endl;
+    string filepath = "./fifo-input.txt";
+    ofstream file;
+    file.open(filepath);
+
+    if (file.is_open()){
+        for (int i = 0; i < 100; i++){
+            // fill buffer with random numbers
+            buff[i] = rand();
+            file << buff[i] << std::endl;
+        }
+
+        // write buff to the fifo 
+        write(fileDescriptor, buff, sizeof(buff)); 
+
+        // close fifo
+        close(fileDescriptor);
     }
-
-    // write buff to the fifo 
-    write(fileDescriptor, buff, sizeof(buff)); 
-
-    // close fifo
-    close(fileDescriptor);
+    
+    // close file
+    file.close();
     
     return 0;
 }
