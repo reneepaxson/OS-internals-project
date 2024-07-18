@@ -18,7 +18,7 @@ In my implementation, [fifo1.cpp](fifo1.cpp) writes 100 random integers to the f
 `fifo2.cpp` code and comments:
 ![fifo2.JPG](../images/fifo2.JPG)
 
-The data written to the fifo will differ with each run, but the first 20 lines of data in each file are shown below
+The data written to the fifo will differ with each run, but the first 20 lines of data collected from my last run in each file  are shown below
 
 `fifo-input.txt`:
 ![fifo-input.png](../images/fifo-input.png)
