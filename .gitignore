@@ -1,6 +1,9 @@
+*.dSYM
+/build
 *.vscode
 *.git
 *.idea
 *.iml
 .DS_Store
 *.class
+*.exe
