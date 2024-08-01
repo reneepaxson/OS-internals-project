@@ -23,17 +23,21 @@ The goal of this IPC method is to write 100 pieces of data to a named pipe, call
 In my implementation, [fifo1.cpp](fifo1.cpp) writes 100 random integers to the fifo `myfifo`, and [fifo2.cpp](fifo2.cpp) reads the integers from `myfifo`. The input from `fifo1.cpp` prints out to [fifo-intput.txt](fifo-input.txt) and the data read from the pipe in `fifo2.cpp` prints out to [fifo-output.txt](./fifo-output.txt). These files are exactly identical, proving that the communication was successful. Specific documentation on the individual steps taken to achieve that goal are written in the comments of the code seen below.
 
 `fifo1.cpp` code and comments:
+
 ![fifo1.JPG](./images/fifo1.JPG)
 
 `fifo2.cpp` code and comments:
+
 ![fifo2.JPG](./images/fifo2.JPG)
 
 The data written to the fifo will differ with each run, but the first 20 lines of data collected from my last run in each file  are shown below
 
 `fifo-input.txt`:
+
 ![fifo-input.png](./images/fifo-input.png)
 
 `fifo-output.txt`:
+
 ![fifo-output.png](./images/fifo-output.png)
 
 #### System Calls Used
@@ -61,17 +65,21 @@ To run, the user must build an executable from [socket1.java](./socket1.java) an
 Here we are sending 100 randomly generated integers as byte arrays from `socket1.java` to `socket2.java` on our local address (LocalHost = 127.0.0.1) and the specified port to which the receiving process `socket2.java` is bound - I chose port 1234, but it doesn't matter so long as the port number is outside of the reserved range (>1023) and it is not being used by any other receiving processes. The messages are sent one at a time through Java classes `DatagramPacket` and `DatagramSocket`. The input from `socket1.java` writes to the file [socketInputData.txt](./socketInputData.txt), and the data read from `socket2.java` writes to the file [socketOutputData.txt](./socketOutputData.txt). The contents of both files are exactly identical, proving the success of the communication. Specific documentation on the individual steps taken to achieve that goal are written in the comments of the code seen below.
 
 `socket1.java` code and comments:
+
 ![socket1.JPG](./images/socket1.JPG)
 
 `socket2.java` code and comments:
+
 ![socket2.JPG](./images/socket2.JPG)
 
 The data communicated will differ with each run, but the first 20 lines of data collected from my last run in each file  are shown below
 
 `socketInputData.txt`:
+
 ![socketInputData.png](./images/socketInputData.png)
 
 `socketOutputData.txt`:
+
 ![socketOutputData.png](./images/socketOutputData.png)
 
 #### System Calls Used
