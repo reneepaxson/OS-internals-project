@@ -1,5 +1,5 @@
 *.dSYM
-/build
+*/build
 *.vscode
 *.git
 *.idea
