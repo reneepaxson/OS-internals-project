@@ -34,4 +34,4 @@ o Medium:IPC–machmessage(https://medium.com/@ali.pourhadi/ipc-mach-
 message-cab64c1b569)
 o HackTricks:MachmessagingviaPorts(https://book.hacktricks.xyz/macos-
 hardening/macos-security-and-privilege-escalation/macos-proces-abuse/macos- ipc-inter-process-communication)
-      
+- operating system concepts 9th edition practice problem solutions: https://codex.cs.yale.edu/avi/os-book/OS9/practice-exer-dir/index.html      
